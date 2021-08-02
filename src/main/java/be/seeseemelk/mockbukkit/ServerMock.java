@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import be.seeseemelk.mockbukkit.block.data.BlockDataMock;
+import be.seeseemelk.mockbukkit.inventory.*;
 import org.apache.commons.lang.Validate;
 import org.bukkit.BanEntry;
 import org.bukkit.BanList;
@@ -85,17 +86,6 @@ import be.seeseemelk.mockbukkit.entity.EntityMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMock;
 import be.seeseemelk.mockbukkit.entity.PlayerMockFactory;
 import be.seeseemelk.mockbukkit.help.HelpMapMock;
-import be.seeseemelk.mockbukkit.inventory.BarrelInventoryMock;
-import be.seeseemelk.mockbukkit.inventory.ChestInventoryMock;
-import be.seeseemelk.mockbukkit.inventory.DispenserInventoryMock;
-import be.seeseemelk.mockbukkit.inventory.DropperInventoryMock;
-import be.seeseemelk.mockbukkit.inventory.EnderChestInventoryMock;
-import be.seeseemelk.mockbukkit.inventory.HopperInventoryMock;
-import be.seeseemelk.mockbukkit.inventory.InventoryMock;
-import be.seeseemelk.mockbukkit.inventory.ItemFactoryMock;
-import be.seeseemelk.mockbukkit.inventory.LecternInventoryMock;
-import be.seeseemelk.mockbukkit.inventory.PlayerInventoryMock;
-import be.seeseemelk.mockbukkit.inventory.ShulkerBoxInventoryMock;
 import be.seeseemelk.mockbukkit.inventory.meta.ItemMetaMock;
 import be.seeseemelk.mockbukkit.plugin.PluginManagerMock;
 import be.seeseemelk.mockbukkit.potion.MockPotionEffectType;
@@ -510,6 +500,7 @@ public class ServerMock extends Server.Spigot implements Server
 
 		if (!type.isCreatable())
 		{
+			// Applicable to types CRAFTING, MERCHANT, CREATIVE
 			throw new IllegalArgumentException("Inventory Type is not creatable!");
 		}
 
@@ -541,37 +532,31 @@ public class ServerMock extends Server.Spigot implements Server
 		case LECTERN:
 			return new LecternInventoryMock(owner);
 		case GRINDSTONE:
-		// TODO: This Inventory Type needs to be implemented
+			return new GrindstoneInventoryMock(owner);
 		case STONECUTTER:
-		// TODO: This Inventory Type needs to be implemented
+			return new StoneCutterInventoryMock(owner);
 		case CARTOGRAPHY:
-		// TODO: This Inventory Type needs to be implemented
+			return new CartographyTableInventoryMock(owner);
 		case SMOKER:
-		// TODO: This Inventory Type needs to be implemented
+			return new SmokerInventoryMock(owner);
 		case LOOM:
-		// TODO: This Inventory Type needs to be implemented
+			return new LoomInventoryMock(owner);
 		case BLAST_FURNACE:
-		// TODO: This Inventory Type needs to be implemented
+			return new BlastFurnaceInventoryMock(owner);
 		case ANVIL:
-		// TODO: This Inventory Type needs to be implemented
+			return new AnvilInventoryMock(owner);
 		case SMITHING:
-		// TODO: This Inventory Type needs to be implemented
+			return new SmithingTableInventoryMock(owner);
 		case BEACON:
-		// TODO: This Inventory Type needs to be implemented
+			return new BeaconInventoryMock(owner);
 		case FURNACE:
-		// TODO: This Inventory Type needs to be implemented
+			return new FurnaceInventoryMock(owner);
 		case WORKBENCH:
-		// TODO: This Inventory Type needs to be implemented
+			return new WorkbenchInventoryMock(owner);
 		case ENCHANTING:
-		// TODO: This Inventory Type needs to be implemented
+			return new EnchantingInventoryMock(owner);
 		case BREWING:
-		// TODO: This Inventory Type needs to be implemented
-		case CRAFTING:
-		// TODO: This Inventory Type needs to be implemented
-		case CREATIVE:
-		// TODO: This Inventory Type needs to be implemented
-		case MERCHANT:
-		// TODO: This Inventory Type needs to be implemented
+			return new BrewingInventoryMock(owner);
 		default:
 			throw new UnimplementedOperationException("Inventory type not yet supported");
 		}
